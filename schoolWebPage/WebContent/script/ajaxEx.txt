@@ -1,0 +1,39 @@
+<!-- <script type="text/javascript"> -->
+		function gradePut() {
+
+			var chResult = '미등록자조회';
+
+			$.ajax({
+				type : "GET",
+				url : "gradePut",
+				data : {
+					ban : $('#ban').val(),
+					chResult : chResult
+				},
+				dataType : "JSON",
+				success : function(memberList) {
+					alert('여기까지는 넘어왔네요!~~');
+					// 가져온 리스트의 개수만큼 value 값을 집어 넣어준다.
+					for (var i = 0; i < memberList.length; i++) {
+
+						var row = '<tr>' + '<td>' + memberList[i].usergrade
+								+ '</td>' + '<td>' + memberList[i].username
+								+ '</td>' + '<td>' + memberList[i].num
+								+ '</td>' + '</tr>';
+						$('#studentTable tbody').append(row);
+
+					}
+					$('#studentListTable').hide();
+					$('#studentTable').show();
+					console.log(chResult);
+				},
+				error : function() {
+					alert('에러가 발생했습니다.');
+				},
+				complete : function() {
+					alert('작업을 완료했습니다.');
+				}
+			});
+
+		}
+	</script>
